@@ -99,4 +99,9 @@ RUN asdf install
 
 VOLUME ["${ASDF_DATA_DIR}"]
 
+# Pre-commit install with deps
+RUN pip install setuptools wheel
+RUN pip install pre-commit
+RUN echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc
+
 CMD ["/bin/bash"]
