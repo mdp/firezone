@@ -1,7 +1,5 @@
 import Config
 
-alias FzCommon.ConfigHelpers
-
 # Configure your database
 if url = System.get_env("DATABASE_URL") do
   config :fz_http, FzHttp.Repo,
@@ -60,7 +58,7 @@ config :fz_wall,
   cli: FzWall.CLI.Sandbox
 
 # Auth
-local_auth_enabled = (System.get_env("LOCAL_AUTH_ENABLED") && true) || false
+local_auth_enabled = (System.get_env("LOCAL_AUTH_ENABLED") && true) || true
 okta_auth_enabled = (System.get_env("OKTA_AUTH_ENABLED") && true) || false
 google_auth_enabled = (System.get_env("GOOGLE_AUTH_ENABLED") && true) || false
 

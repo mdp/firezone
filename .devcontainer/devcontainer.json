@@ -13,7 +13,8 @@
 
 	// Add the IDs of extensions you want installed when the container is created.
 	"extensions": [
-		"jakebecker.elixir-ls"
+		"jakebecker.elixir-ls",
+		"phoenixframework.phoenix"
 	],
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
