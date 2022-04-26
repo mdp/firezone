@@ -96,8 +96,22 @@ mix start
 ```
 
 At this point you should be able to sign in to
-[http://localhost:4000](http://localhost:4000) with email `factory@factory` and
-password `factory`.
+[http://localhost:4000](http://localhost:4000) with email `firezone@localhost` and
+password `firezone1234`.
+
+## Running this inside a Devcontainer
+
+You can run this using Github Codespaces or your own devcontainer using Docker.
+
+On GitHub Codespaces, follow the instructions above but start the server with
+PROXY_FORWARDED enabled and pass in your Codespace external url:
+
+`PROXY_FORWARDED=true EXTERNAL_URL=[your_devcontainer_url] mix start`
+
+On Github Codespaces you can find your EXTERNAL_URL by issuing the following
+command in the terminal:
+
+`echo "https://${CODESPACE_NAME}-4000.githubpreview.dev"`
 
 # Reporting Bugs
 We appreciate any and all bug reports.

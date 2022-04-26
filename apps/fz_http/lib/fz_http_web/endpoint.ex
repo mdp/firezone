@@ -36,10 +36,22 @@ defmodule FzHttpWeb.Endpoint do
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.
   if code_reloading? do
-    socket "/phoenix/live_reload/socket", Phoenix.LiveReloader.Socket
+    socket "/phoenix/live_reload/socket", Phoenix.LiveReloader.Socket,
+      websocket: [
+        connect_info: [
+          session: {Session, :options, []}
+        ],
+        # XXX: csrf token should prevent CSWH but double check
+        check_origin: false
+      ]
+
     plug Phoenix.LiveReloader
     plug Phoenix.CodeReloader
     plug Phoenix.Ecto.CheckRepoStatus, otp_app: :fz_http
+  end
+
+  if Application.get_env(:fz_http, FzHttpWeb.Endpoint, :proxy_forwarded) do
+    plug Plug.RewriteOn, [:x_forwarded_host, :x_forwarded_port, :x_forwarded_proto]
   end
 
   plug Plug.RequestId

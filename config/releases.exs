@@ -55,6 +55,9 @@ google_client_id = System.get_env("GOOGLE_CLIENT_ID")
 google_client_secret = System.get_env("GOOGLE_CLIENT_SECRET")
 google_redirect_uri = System.get_env("GOOGLE_REDIRECT_URI")
 
+# Enable Forwarded headers, e.g 'X-FORWARDED-HOST'
+proxy_forwarded = FzString.to_boolean(System.fetch_env!("PROXY_FORWARDED"))
+
 max_devices_per_user =
   System.fetch_env!("MAX_DEVICES_PER_USER")
   |> String.to_integer()
@@ -133,7 +136,8 @@ config :fz_http, FzHttpWeb.Endpoint,
   secret_key_base: secret_key_base,
   live_view: [
     signing_salt: live_view_signing_salt
-  ]
+  ],
+  proxy_forwarded: proxy_forwarded
 
 config :fz_wall,
   nft_path: nft_path,

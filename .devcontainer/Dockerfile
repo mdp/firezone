@@ -103,5 +103,6 @@ VOLUME ["${ASDF_DATA_DIR}"]
 RUN pip install setuptools wheel
 RUN pip install pre-commit
 RUN echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc
+ENV PATH=$HOME/.local/bin:$PATH
 
 CMD ["/bin/bash"]
